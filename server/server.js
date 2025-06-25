@@ -19,10 +19,11 @@
   });
 
   // Middleware
+  app.use('/uploads', express.static('uploads'));
   app.use(express.json());
-  app.use('/uploads', express.static('uploads')); // kalau kamu pakai gambar lokal
-  app.use('/', agendaRoutes);
+  app.use(express.urlencoded({ extended: true }));
 
+  app.use('/api/agenda', agendaRoutes);
   // Jalankan server setelah connect
   async function run() {
     try {
